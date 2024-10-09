@@ -1,0 +1,8 @@
+fc_input/
+models/
+.venv/
+.vscode/
+fc_basic_med.py
+fc_triple_small.py
+fc_triple_med.py
+random_gen.py
