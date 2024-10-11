@@ -24,6 +24,7 @@ elif args.model_name == 'fc_triple':
     if args.model_config == 'small':
         inputDim = 128
     elif args.model_config == 'med' or args.model_config == 'medium':
+        args.model_config = 'medium'
         inputDim = 512
     elif args.model_config == 'large':
         inputDim = 4096
@@ -44,12 +45,15 @@ fp.write('// program generated\n')
 fp.write(f'// model: {fileName}\n')
 fp.write(f'// input dimension: {inputDim}, batch size: {batchSize}\n')
 
-DL_INPUT_DIM = 128
-DL_BATCH_SIZE = 512
-n_numbers = DL_BATCH_SIZE * DL_INPUT_DIM
+#DL_INPUT_DIM = 128
+#DL_BATCH_SIZE = 512
+#n_numbers = DL_BATCH_SIZE * DL_INPUT_DIM
+n_numbers = inputDim * batchSize
 random_numbers = [ random.uniform(-3.0, 3.0) for _ in range(n_numbers) ]
 
 # 결과 출력 (소수점 4자리까지 표시)
+fp.write(f'#define DL_INPUT_DIM {inputDim}\n')
+fp.write(f'#define DL_BATCH_SIZE {batchSize}\n')
 fp.write('float fc_input[%d] = { ' % (inputDim * batchSize))
 i = 0
 j = 0
@@ -60,7 +64,7 @@ for n in random_numbers:
     fp.write("{0:.4f}".format(n) + ends)
     i += 1
     j += 1
-    if i == DL_INPUT_DIM and j < n_numbers:
+    if i == inputDim and j < n_numbers:
         fp.write('\n')
         i = 0
 fp.write('};\n')
