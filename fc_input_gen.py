@@ -31,7 +31,8 @@ elif args.model_name == 'fc_triple':
     elif args.model_config == 'xl':
         inputDim = 8192
     elif args.model_config == 'xxl':
-        inputDim = 12000
+        #inputDim = 12000
+        inputDim = 11000
     elif args.model_config == 'huge':
         inputDim = 16384
     else:

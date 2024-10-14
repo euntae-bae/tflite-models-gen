@@ -32,7 +32,8 @@ elif args.model == 'xl':
     outputFC3 = 1
     modelName += '_xl'
 elif args.model == 'xxl':
-    inputSize = 12000
+    #inputSize = 12000
+    inputSize = 11000
     outputFC1 = 2048
     outputFC2 = 512
     outputFC3 = 1
