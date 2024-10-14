@@ -3,8 +3,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--model-name', action='store', default='fc_triple', help='default=fc_triple')
-parser.add_argument('--model-config', action='store', default='medium', help='default=medium')
+parser.add_argument('--model-name', action='store', default='fc_triple', help='fc_basic, fc_triple (default=fc_triple)')
+parser.add_argument('--model-config', action='store', default='medium', help='small, medium, large, xl, xxl, huge (default=medium)')
 parser.add_argument('--batch-size', '-b', type=int, action='store', default=1, help='default=1')
 # parser.add_argument('--input-dim', action='store', help='default=12')
 args = parser.parse_args()
@@ -28,8 +28,15 @@ elif args.model_name == 'fc_triple':
         inputDim = 512
     elif args.model_config == 'large':
         inputDim = 4096
+    elif args.model_config == 'xl':
+        inputDim = 8192
+    elif args.model_config == 'xxl':
+        inputDim = 12000
     elif args.model_config == 'huge':
         inputDim = 16384
+    else:
+        print(f'E: the configuration {args.model_config} is non available')
+        exit(1)
 
 batchSize = args.batch_size
 

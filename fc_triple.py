@@ -4,7 +4,7 @@ import sys
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--model', '-m', action='store', help='default=med; small, med, large, huge')
+parser.add_argument('--model', '-m', action='store', help='small, medium, large, xl, xxl, huge; (default=medium)')
 args = parser.parse_args()
 
 inputSize = 0
@@ -25,6 +25,18 @@ elif args.model == 'large':
     outputFC2 = 256
     outputFC3 = 1
     modelName += '_large'
+elif args.model == 'xl':
+    inputSize = 8192
+    outputFC1 = 2048
+    outputFC2 = 512
+    outputFC3 = 1
+    modelName += '_xl'
+elif args.model == 'xxl':
+    inputSize = 12000
+    outputFC1 = 2048
+    outputFC2 = 512
+    outputFC3 = 1
+    modelName += '_xxl'
 elif args.model == 'huge':
     inputSize = 16384
     outputFC1 = 4096
